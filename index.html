@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fast character, word, sentence and paragraph counter with readability metrics, keyword density, and character limits for social posts, essays, and SEO content." />
+  <title>CharCount Pro | Instant Character & Word Counter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+
+    <!-- Compact header — brand left, leaderboard ad right -->
+    <header class="site-header">
+      <div class="header-brand">
+        <p class="eyebrow">Free Online Tool</p>
+        <h1>CharCount Pro</h1>
+        <p class="header-tagline">Character, word &amp; readability counter — updates as you type</p>
+      </div>
+      <div class="header-ad">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-card ad-leaderboard">AdSense placeholder<br /><span class="ad-tag">728×90 Leaderboard</span></div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Editor + sticky sidebar layout -->
+      <section id="editor" class="editor-section">
+
+        <!-- Left: text editor -->
+        <div class="editor-card">
+          <div class="toolbar">
+            <span class="toolbar-label">Type or paste your text:</span>
+            <div class="toolbar-actions">
+              <button id="btnClear" class="button button-tertiary" title="Clear all text">
+                <span aria-hidden="true">🗑</span> Clear
+              </button>
+              <button id="btnCopy" class="button button-tertiary" title="Copy to clipboard">
+                <span aria-hidden="true">📋</span> Copy
+              </button>
+              <button id="btnPaste" class="button button-tertiary" title="Paste from clipboard (Ctrl+V also works)">
+                <span aria-hidden="true">📥</span> Paste
+              </button>
+            </div>
+          </div>
+
+          <textarea id="textInput"
+            placeholder="Start typing or paste text here…"
+            aria-label="Text editor for counting characters and words"></textarea>
+
+          <!-- Goal / character-limit tracker -->
+          <div class="goal-row">
+            <div class="goal-controls">
+              <label for="goalSelect" class="goal-label">Limit:</label>
+              <select id="goalSelect" class="goal-select" aria-label="Character limit preset">
+                <option value="">None</option>
+                <option value="280">Twitter / X (280)</option>
+                <option value="500">Mastodon (500)</option>
+                <option value="2200">Instagram caption (2,200)</option>
+                <option value="3000">LinkedIn post (3,000)</option>
+                <option value="custom">Custom…</option>
+              </select>
+              <input id="goalCustom" class="goal-input" type="number" min="1"
+                placeholder="e.g. 500" aria-label="Custom character limit" />
+            </div>
+            <div class="goal-progress-wrap" id="goalProgressWrap" hidden>
+              <div class="goal-progress-bar" role="progressbar"
+                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div class="goal-progress-fill" id="goalFill"></div>
+              </div>
+              <span class="goal-counter" id="goalCounter" aria-live="polite">0 / 280</span>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <span id="saveStatus">Auto-saved locally</span>
+            <span id="restoreStatus"></span>
+          </div>
+        </div>
+
+        <!-- Right: sticky metrics sidebar -->
+        <aside class="metrics-panel" aria-label="Live text metrics">
+
+          <!-- Core stats -->
+          <div class="metrics-card">
+            <h2>Live Metrics</h2>
+            <div class="metrics-grid">
+              <div class="metric-item metric-highlight">
+                <span id="charCount">0</span>
+                <p>Characters</p>
+              </div>
+              <div class="metric-item metric-highlight">
+                <span id="wordCount">0</span>
+                <p>Words</p>
+              </div>
+              <div class="metric-item">
+                <span id="charNoSpaceCount">0</span>
+                <p>No spaces</p>
+              </div>
+              <div class="metric-item">
+                <span id="sentenceCount">0</span>
+                <p>Sentences</p>
+              </div>
+              <div class="metric-item">
+                <span id="paragraphCount">0</span>
+                <p>Paragraphs</p>
+              </div>
+              <div class="metric-item">
+                <span id="readTime">—</span>
+                <p>Read time</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Keyword density — now in sidebar, visible without scrolling -->
+          <div class="metrics-card keywords-card">
+            <h2>Top Keywords</h2>
+            <ul id="keywordList" class="keyword-list">
+              <li class="keyword-empty">Start typing to see keywords…</li>
+            </ul>
+          </div>
+
+          <!-- Sidebar ad (300×250 — highest RPM unit) -->
+          <div class="metrics-card ad-panel">
+            <div class="ad-label">Advertisement</div>
+            <div class="ad-card ad-sidebar">AdSense placeholder<br /><span class="ad-tag">300×250 Ad Unit</span></div>
+          </div>
+
+        </aside>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="features-section">
+        <h2>Why CharCount Pro?</h2>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <h3>Instant live counting</h3>
+            <p>Every metric updates as you type or paste — no delays, no page reloads.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🎯</div>
+            <h3>Character limits &amp; goals</h3>
+            <p>Presets for Twitter, Instagram, LinkedIn plus custom targets with a colour-coded progress bar.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">💾</div>
+            <h3>Auto-save editor</h3>
+            <p>Your draft is kept in your browser and silently restored on your next visit.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🔑</div>
+            <h3>Keyword density</h3>
+            <p>Spot overused words instantly and keep your writing varied and SEO-friendly.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Responsive horizontal ad banner — above footer -->
+      <div class="ad-banner-wrap">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-card ad-horizontal">AdSense placeholder<br /><span class="ad-tag">Responsive Banner</span></div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>CharCount Pro — fast, private, 100% browser-based. Your text is never uploaded or stored on any server.</p>
+      <p>© 2026 CharCount Pro · Replace ad placeholders with your Google AdSense code when your site is ready.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
