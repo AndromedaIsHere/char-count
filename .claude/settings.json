@@ -1,7 +1,27 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git commit -m 'Initial commit — CharCount Pro v1 *)"
+      "Bash(git commit -m 'Initial commit — CharCount Pro v1 *)",
+      "WebFetch(domain:www.countify.com)",
+      "WebFetch(domain:www.textify.com)",
+      "WebFetch(domain:www.tallycopy.com)",
+      "WebFetch(domain:www.wordtally.com)",
+      "WebFetch(domain:www.countthat.com)",
+      "WebFetch(domain:www.quickcount.com)",
+      "WebFetch(domain:www.swiftcount.com)",
+      "WebFetch(domain:www.textpulse.com)",
+      "WebFetch(domain:www.writecount.com)",
+      "WebFetch(domain:www.countpad.com)",
+      "WebFetch(domain:www.tallytext.com)",
+      "WebFetch(domain:www.charmetric.com)",
+      "WebFetch(domain:www.countdraft.com)",
+      "WebFetch(domain:www.wordpulse.com)",
+      "WebFetch(domain:www.charcounter.com)",
+      "WebFetch(domain:www.hugedomains.com)",
+      "WebFetch(domain:who.is)",
+      "WebFetch(domain:lookup.icann.org)",
+      "WebFetch(domain:www.namecheap.com)",
+      "Bash(git commit -m 'Rebrand CharCount Pro → CountDraft *)"
     ]
   }
 }

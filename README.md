@@ -1,31 +1,32 @@
-# CharCount Pro
+# CountDraft
 
-A lightweight character count website built for fast browser use and easy monetization with Google AdSense.
+A fast, free, browser-based character and word counter at [countdraft.com](https://countdraft.com).
 
-## What this project includes
+## Features
 
-- Responsive single-page layout with a text editor and live stats
-- Character and word counting
-- Sentence, paragraph, and reading time metrics
-- Keyword density preview
-- Auto-save draft support via localStorage
-- AdSense-friendly ad placeholder sections
+- Live character, word, sentence, paragraph, and reading time counts
+- Character limit presets — Twitter/X, Mastodon, Instagram, LinkedIn, custom
+- Color-coded progress bar (green → amber → red)
+- Keyword density panel
+- Auto-save draft via localStorage — restored on next visit
+- AdSense-ready ad slots: leaderboard header, 300×250 sidebar, responsive bottom banner
+- Fully responsive — mobile, tablet, desktop
 
-## How to use
+## How to use locally
 
-1. Open `index.html` in a browser.
-2. Type or paste text into the editor.
-3. The counters update instantly.
-4. Replace the placeholder ad sections in `index.html` with your Google AdSense script.
+1. Clone the repo
+2. Open `index.html` in any browser — no build step needed
 
-## Monetization guidance
+## Deployment
 
-- Add your AdSense code to the `<head>` of `index.html`.
-- Replace the `.ad-card` sections with actual ad unit containers.
-- Keep the content area clean and fast loading to maximize ad impressions.
+Hosted on GitHub Pages with a custom domain (`countdraft.com`).
 
-## Deployment suggestions
+## Monetization
 
-- Host as a static site using GitHub Pages, Netlify, Vercel, or any static site host.
-- Use SEO-friendly metadata and a short, descriptive title to attract organic traffic.
-- Add more tools over time, such as a word counter, readability score, or text case converter, to increase repeat visits.
+- Three AdSense slots: 728×90 leaderboard, 300×250 sidebar (sticky), responsive bottom banner
+- Replace `.ad-card` placeholder divs in `index.html` with your AdSense unit code
+- Add your AdSense `<script>` tag to the `<head>` of `index.html`
+
+## License
+
+MIT
