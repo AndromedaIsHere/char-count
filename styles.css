@@ -83,10 +83,12 @@ html, body {
 .header-ad {
   flex: 1 1 auto;
   max-width: 740px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
   gap: 4px;
+  overflow: hidden;
 }
 
 .ad-label {
@@ -111,16 +113,21 @@ html, body {
 }
 
 .ad-leaderboard {
+  display: block;
   width: 100%;
-  min-height: 90px;
+  min-width: 250px;
+  min-height: 100px;
 }
 
 .ad-sidebar {
+  display: block;
   width: 100%;
   min-height: 250px;
+  max-height: 600px;
 }
 
 .ad-horizontal {
+  display: block;
   width: 100%;
   min-height: 100px;
 }
@@ -426,7 +433,11 @@ textarea:focus {
 }
 
 /* Sidebar ad */
-.ad-panel { text-align: left; }
+.ad-panel {
+  text-align: left;
+  padding: 12px;
+  overflow: hidden;
+}
 
 /* ── Features section ────────────────────────────────────── */
 .features-section {
