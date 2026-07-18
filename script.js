@@ -1,4 +1,4 @@
-/* CharCount Pro — script.js */
+/* CountDraft — script.js */
 
 const textInput        = document.getElementById('textInput');
 const wordCountEl      = document.getElementById('wordCount');
@@ -15,13 +15,32 @@ const restoreStatus    = document.getElementById('restoreStatus');
 const saveStatus       = document.getElementById('saveStatus');
 
 // Goal / limit elements
-const goalSelect      = document.getElementById('goalSelect');
-const goalCustom      = document.getElementById('goalCustom');
+const goalSelect       = document.getElementById('goalSelect');
+const goalCustom       = document.getElementById('goalCustom');
 const goalProgressWrap = document.getElementById('goalProgressWrap');
-const goalFill        = document.getElementById('goalFill');
-const goalCounter     = document.getElementById('goalCounter');
+const goalFill         = document.getElementById('goalFill');
+const goalCounter      = document.getElementById('goalCounter');
 
 const STORAGE_KEY = 'charcount-pro-text';
+
+// ── Analytics helper ─────────────────────────────────────
+
+function trackEvent(name, params = {}) {
+  if (typeof gtag === 'function') {
+    gtag('event', name, params);
+  }
+}
+
+// Fire once per session at 50 / 200 / 500 / 1000 chars
+const milestones = new Set();
+function trackMilestones(chars) {
+  [50, 200, 500, 1000].forEach(n => {
+    if (chars >= n && !milestones.has(n)) {
+      milestones.add(n);
+      trackEvent('typing_milestone', { chars_reached: n });
+    }
+  });
+}
 
 // ── Text analysis helpers ────────────────────────────────
 
@@ -56,7 +75,7 @@ const STOP_WORDS = new Set([
 function topKeywords(text, maxItems = 8) {
   const words = text
     .toLowerCase()
-    .replace(/[’'“”]/g, '')
+    .replace(/[''""]/g, '')
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
     .filter(w => w.length > 2 && !STOP_WORDS.has(w));
@@ -74,7 +93,7 @@ function topKeywords(text, maxItems = 8) {
 
 // ── Goal / limit tracking ────────────────────────────────
 
-let goalLimit = 0; // 0 = no limit
+let goalLimit = 0;
 
 function getGoalLimit() {
   const sel = goalSelect.value;
@@ -96,7 +115,7 @@ function updateGoalBar(chars) {
 
   goalProgressWrap.hidden = false;
 
-  const pct = Math.min((chars / goalLimit) * 100, 100);
+  const pct  = Math.min((chars / goalLimit) * 100, 100);
   const over = chars > goalLimit;
   const warn = !over && pct >= 80;
 
@@ -121,6 +140,12 @@ goalSelect.addEventListener('change', () => {
   goalCustom.classList.toggle('visible', isCustom);
   if (!isCustom) goalCustom.value = '';
   updateGoalBar(textInput.value.length);
+  // Track which preset was selected
+  if (goalSelect.value && goalSelect.value !== 'custom') {
+    trackEvent('limit_preset_selected', {
+      preset: goalSelect.options[goalSelect.selectedIndex].text
+    });
+  }
 });
 
 goalCustom.addEventListener('input', () => {
@@ -187,6 +212,7 @@ function restoreText() {
     restoreStatus.textContent = 'Restored your last draft';
     setTimeout(() => { restoreStatus.textContent = ''; }, 3200);
     updateMetrics();
+    trackEvent('draft_restored', { char_count: saved.length });
   } else {
     updateMetrics();
   }
@@ -196,6 +222,7 @@ function restoreText() {
 
 btnClear.addEventListener('click', () => {
   if (textInput.value === '') return;
+  trackEvent('text_cleared', { char_count: textInput.value.length });
   textInput.value = '';
   updateMetrics();
   saveText();
@@ -207,6 +234,7 @@ btnCopy.addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(textInput.value);
     flash('✔ Copied to clipboard');
+    trackEvent('text_copied', { char_count: textInput.value.length });
   } catch {
     flash('Copy failed — use Ctrl+C instead');
   }
@@ -214,14 +242,14 @@ btnCopy.addEventListener('click', async () => {
 
 btnPaste.addEventListener('click', async () => {
   try {
-    const text = await navigator.clipboard.readText();
-    // Insert at cursor, or append if no selection API
+    const text  = await navigator.clipboard.readText();
     const start = textInput.selectionStart ?? textInput.value.length;
     const end   = textInput.selectionEnd   ?? textInput.value.length;
     textInput.setRangeText(text, start, end, 'end');
     updateMetrics();
     saveText();
     textInput.focus();
+    trackEvent('paste_used', { char_count: textInput.value.length });
   } catch {
     flash('Paste failed — use Ctrl+V instead');
   }
@@ -232,6 +260,7 @@ btnPaste.addEventListener('click', async () => {
 textInput.addEventListener('input', () => {
   updateMetrics();
   saveText();
+  trackMilestones(textInput.value.length);
 });
 
 // ── Init ─────────────────────────────────────────────────
