@@ -21,24 +21,26 @@
 <body>
   <div class="page-shell">
 
-    <!-- Compact header — brand left, leaderboard ad right -->
+    <!-- Header — brand top, leaderboard below (no layout shift) -->
     <header class="site-header">
       <div class="header-brand">
         <p class="eyebrow">Free Online Tool</p>
         <h1>CountDraft</h1>
         <p class="header-tagline">Character, word &amp; readability counter — updates as you type</p>
       </div>
-      <div class="header-ad">
-        <div class="ad-label">Advertisement</div>
-        <ins class="adsbygoogle ad-leaderboard"
-             style="display:block"
-             data-ad-client="ca-pub-3660868413101432"
-             data-ad-slot="3349015779"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
     </header>
+
+    <!-- Leaderboard ad sits between header and editor — no content shifts when it loads -->
+    <div class="header-ad">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle ad-leaderboard"
+           style="display:block"
+           data-ad-client="ca-pub-3660868413101432"
+           data-ad-slot="3349015779"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <main>
       <!-- Editor + sticky sidebar layout -->

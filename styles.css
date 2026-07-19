@@ -39,17 +39,12 @@ html, body {
 
 /* ── Site header (compact — tool visible on first load) ─── */
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
   padding: 18px 28px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: var(--surface);
   border-radius: 20px;
   border: 1px solid var(--border);
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
-  flex-wrap: wrap;
 }
 
 .header-brand {
@@ -81,21 +76,15 @@ html, body {
 
 /* Header ad (leaderboard 728×90) */
 .header-ad {
-  flex: 1 1 auto;
-  max-width: 740px;
-  min-width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 4px;
+  margin-bottom: 10px;
   overflow: hidden;
 }
 
-/* Collapse ad label when no ad has loaded */
+/* Collapse entirely when unfilled — no blank space */
 .header-ad:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
   display: none;
 }
-.header-ad:has(ins.adsbygoogle:not([data-ad-status])) .ad-label {
+.header-ad:has(ins.adsbygoogle:not([data-ad-status])) {
   display: none;
 }
 
@@ -125,6 +114,8 @@ html, body {
   width: 100%;
   min-width: 250px;
   min-height: 0;
+  /* Once AdSense approved: uncomment the line below to reserve space and prevent layout shift */
+  /* min-height: 90px; */
 }
 
 .ad-sidebar {
@@ -525,15 +516,10 @@ textarea:focus {
   }
 }
 
-/* Header adapts on narrow screens */
+/* Header ad full width on all screens */
 @media (max-width: 860px) {
-  .site-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .header-ad {
     width: 100%;
-    align-items: stretch;
   }
 }
 
