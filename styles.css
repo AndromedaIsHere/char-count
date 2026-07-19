@@ -91,6 +91,14 @@ html, body {
   overflow: hidden;
 }
 
+/* Collapse ad label when no ad has loaded */
+.header-ad:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
+}
+.header-ad:has(ins.adsbygoogle:not([data-ad-status])) .ad-label {
+  display: none;
+}
+
 .ad-label {
   font-size: 0.72rem;
   color: var(--text-muted);
@@ -116,7 +124,7 @@ html, body {
   display: block;
   width: 100%;
   min-width: 250px;
-  min-height: 100px;
+  min-height: 0;
 }
 
 .ad-sidebar {
