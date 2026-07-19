@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free word frequency counter — paste any text and instantly see every unique word ranked by how often it appears. Great for SEO, writing analysis, and keyword research." />
+  <meta name="google-adsense-account" content="ca-pub-3660868413101432" />
+  <title>Word Frequency Counter — See Every Word's Count | CountDraft</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCFSG1SNF4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VCFSG1SNF4');
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3660868413101432" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="page-shell">
+
+    <header class="site-header">
+      <div class="header-brand">
+        <p class="eyebrow">Free Online Tool</p>
+        <h1>Word Frequency Counter</h1>
+        <p class="header-tagline">See every unique word ranked by frequency — great for SEO and writing analysis</p>
+      </div>
+    </header>
+
+    <nav class="site-nav" aria-label="Tools">
+      <a href="/" class="nav-home">🛠 CountDraft</a>
+      <a href="/">Char Counter</a>
+      <a href="/case-converter/">Case Converter</a>
+      <a href="/lorem-ipsum/">Lorem Ipsum</a>
+      <a href="/password-checker/">Password Checker</a>
+      <a href="/word-frequency/" class="active">Word Frequency</a>
+      <a href="/reading-time/">Reading Time</a>
+    </nav>
+
+    <div class="header-ad">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle ad-leaderboard"
+           style="display:block"
+           data-ad-client="ca-pub-3660868413101432"
+           data-ad-slot="3349015779"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <main>
+      <section class="tool-section">
+
+        <div class="tool-card">
+          <div class="toolbar">
+            <span class="toolbar-label">Paste or type your text:</span>
+            <div class="toolbar-actions">
+              <button id="btnClear" class="button button-tertiary">🗑 Clear</button>
+              <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;cursor:pointer">
+                <input type="checkbox" id="stopToggle" checked /> Hide common words
+              </label>
+            </div>
+          </div>
+
+          <textarea id="textInput" placeholder="Paste your text here to analyse word frequency…"
+            aria-label="Text to analyse"></textarea>
+
+          <div class="status-row">
+            <span id="summary" style="color:var(--text-muted);font-size:0.88rem"></span>
+          </div>
+
+          <div id="freqList" style="margin-top:16px;display:grid;gap:7px"></div>
+        </div>
+
+        <aside class="tool-sidebar">
+          <div class="metrics-card">
+            <h2>How to use</h2>
+            <p style="font-size:0.88rem;color:var(--text-secondary);margin:0 0 10px">Paste any text and the list updates instantly. Toggle <strong>Hide common words</strong> to filter out stop words like "the", "and", "is".</p>
+            <p style="font-size:0.88rem;color:var(--text-secondary);margin:0">Use it to spot overused words, check keyword density for SEO, or analyse competitor content.</p>
+          </div>
+
+          <div class="metrics-card ad-panel">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle ad-sidebar"
+                 style="display:block"
+                 data-ad-client="ca-pub-3660868413101432"
+                 data-ad-slot="8772164620"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </aside>
+      </section>
+
+      <div class="ad-banner-wrap">
+        <div class="ad-label">Advertisement</div>
+        <ins class="adsbygoogle ad-horizontal"
+             style="display:block"
+             data-ad-client="ca-pub-3660868413101432"
+             data-ad-slot="3636790382"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>CountDraft — fast, private, 100% browser-based. Your text is never uploaded or stored on any server.</p>
+      <p>© 2026 CountDraft</p>
+    </footer>
+  </div>
+  <script>
+    const STOP_WORDS = new Set(['the','and','for','with','that','this','from','your','you','are','not','but','all','can','has','have','was','were','its','our','their','they','will','what','when','there','into','also','just','more','been','about','who','which','one','would','her','his','she','him','they','we','us','is','it','in','of','to','a','an','on','at','by','as','be','or','if','so','do','my','me','he','no','up','out','had','did','get','got','let','put','say','see','set','use']);
+
+    const textInput  = document.getElementById('textInput');
+    const freqList   = document.getElementById('freqList');
+    const summary    = document.getElementById('summary');
+    const stopToggle = document.getElementById('stopToggle');
+
+    function analyse() {
+      const text  = textInput.value;
+      const hide  = stopToggle.checked;
+      const words = text.toLowerCase()
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(w => w.length > 1 && (!hide || !STOP_WORDS.has(w)));
+
+      const counts = {};
+      for (const w of words) counts[w] = (counts[w] || 0) + 1;
+
+      const sorted = Object.entries(counts).sort((a,b) => b[1] - a[1]);
+      const total  = words.length;
+      const unique = sorted.length;
+
+      summary.textContent = total ? `${total.toLocaleString()} words · ${unique.toLocaleString()} unique` : '';
+      freqList.innerHTML  = '';
+
+      if (!sorted.length) return;
+
+      const max = sorted[0][1];
+      sorted.slice(0, 100).forEach(([word, count]) => {
+        const pct = Math.round((count / max) * 100);
+        const row = document.createElement('div');
+        row.style.cssText = 'display:grid;grid-template-columns:120px 1fr 40px;align-items:center;gap:10px';
+        row.innerHTML = `
+          <span style="font-weight:600;font-size:0.88rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${word}</span>
+          <div style="background:var(--border);border-radius:999px;height:8px;overflow:hidden">
+            <div style="width:${pct}%;height:100%;background:var(--blue);border-radius:999px"></div>
+          </div>
+          <span style="font-size:0.82rem;font-weight:700;color:var(--text-muted);text-align:right">${count}</span>`;
+        freqList.appendChild(row);
+      });
+
+      if (typeof gtag === 'function') gtag('event', 'word_frequency_analysed', { word_count: total });
+    }
+
+    textInput.addEventListener('input', analyse);
+    stopToggle.addEventListener('change', analyse);
+    document.getElementById('btnClear').addEventListener('click', () => {
+      textInput.value = '';
+      freqList.innerHTML = '';
+      summary.textContent = '';
+    });
+  </script>
+</body>
+</html>

@@ -21,7 +21,20 @@
       "WebFetch(domain:who.is)",
       "WebFetch(domain:lookup.icann.org)",
       "WebFetch(domain:www.namecheap.com)",
-      "Bash(git commit -m 'Rebrand CharCount Pro → CountDraft *)"
+      "Bash(git commit -m 'Rebrand CharCount Pro → CountDraft *)",
+      "Bash(git commit -m 'Add CNAME for custom domain countdraft.com *)",
+      "Bash(git commit -m 'Add Google AdSense script \\(ca-pub-3660868413101432\\) *)",
+      "Bash(git commit -m 'Replace ad placeholders with real AdSense units *)",
+      "Bash(git commit -m 'Fix AdSense ad unit dimensions *)",
+      "Bash(git commit -m 'Add ads.txt for AdSense verification *)",
+      "Bash(git commit -m 'Add AdSense meta ownership tag *)",
+      "Bash(git commit -m 'Add Google Analytics 4 \\(G-VCFSG1SNF4\\) *)",
+      "Bash(git commit -m 'Add sitemap.xml and robots.txt for SEO indexing *)",
+      "WebFetch(domain:countdraft.com)",
+      "Bash(git commit -m 'Add GA4 event tracking for feature usage *)",
+      "Bash(git commit -m 'Collapse empty header ad slot before AdSense approval *)",
+      "Bash(git commit -m 'Fix layout shift — move leaderboard below header *)",
+      "Bash(git commit -m 'Add 5 new tools + site navigation *)"
     ]
   }
 }

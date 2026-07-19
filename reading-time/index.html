@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free reading time calculator — paste any text and instantly see estimated reading time for slow, average, and fast readers. Perfect for bloggers, writers, and content marketers." />
+  <meta name="google-adsense-account" content="ca-pub-3660868413101432" />
+  <title>Reading Time Calculator — Free Instant Estimate | CountDraft</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCFSG1SNF4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VCFSG1SNF4');
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3660868413101432" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="page-shell">
+
+    <header class="site-header">
+      <div class="header-brand">
+        <p class="eyebrow">Free Online Tool</p>
+        <h1>Reading Time Calculator</h1>
+        <p class="header-tagline">Estimated reading time for slow, average, and fast readers — updates as you type</p>
+      </div>
+    </header>
+
+    <nav class="site-nav" aria-label="Tools">
+      <a href="/" class="nav-home">🛠 CountDraft</a>
+      <a href="/">Char Counter</a>
+      <a href="/case-converter/">Case Converter</a>
+      <a href="/lorem-ipsum/">Lorem Ipsum</a>
+      <a href="/password-checker/">Password Checker</a>
+      <a href="/word-frequency/">Word Frequency</a>
+      <a href="/reading-time/" class="active">Reading Time</a>
+    </nav>
+
+    <div class="header-ad">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle ad-leaderboard"
+           style="display:block"
+           data-ad-client="ca-pub-3660868413101432"
+           data-ad-slot="3349015779"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <main>
+      <section class="tool-section">
+
+        <div class="tool-card">
+          <div class="toolbar">
+            <span class="toolbar-label">Paste your article or text:</span>
+            <div class="toolbar-actions">
+              <button id="btnClear" class="button button-tertiary">🗑 Clear</button>
+            </div>
+          </div>
+
+          <textarea id="textInput" placeholder="Paste your blog post, article, or any text here…"
+            aria-label="Text to calculate reading time for"></textarea>
+
+          <div class="reading-results" id="results" style="opacity:0.35">
+            <div class="reading-card">
+              <div class="r-time" id="slowTime">—</div>
+              <div class="r-label">🐢 Slow reader<br><span style="font-size:0.72rem">~150 wpm</span></div>
+            </div>
+            <div class="reading-card" style="border-color:var(--blue-light);background:#f0f6ff">
+              <div class="r-time" id="avgTime" style="color:var(--blue)">—</div>
+              <div class="r-label">👤 Average reader<br><span style="font-size:0.72rem">~200 wpm</span></div>
+            </div>
+            <div class="reading-card">
+              <div class="r-time" id="fastTime">—</div>
+              <div class="r-label">⚡ Fast reader<br><span style="font-size:0.72rem">~300 wpm</span></div>
+            </div>
+          </div>
+
+          <div class="status-row" style="margin-top:14px">
+            <span id="wordCount" style="color:var(--text-muted);font-size:0.88rem"></span>
+          </div>
+        </div>
+
+        <aside class="tool-sidebar">
+          <div class="metrics-card">
+            <h2>Reading speeds explained</h2>
+            <ul style="font-size:0.85rem;color:var(--text-secondary);padding-left:1.2em;margin:0;line-height:2">
+              <li><strong>Slow (150 wpm)</strong> — children, non-native speakers, complex technical content</li>
+              <li><strong>Average (200 wpm)</strong> — most adults reading casually</li>
+              <li><strong>Fast (300 wpm)</strong> — proficient adult readers, speed readers</li>
+            </ul>
+          </div>
+
+          <div class="metrics-card">
+            <h2>Content length benchmarks</h2>
+            <ul style="font-size:0.85rem;color:var(--text-secondary);padding-left:1.2em;margin:0;line-height:2">
+              <li>Tweet — &lt; 1 min</li>
+              <li>Short blog post — 3–5 min</li>
+              <li>Long-form article — 7–10 min</li>
+              <li>Short story — 20–30 min</li>
+            </ul>
+          </div>
+
+          <div class="metrics-card ad-panel">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle ad-sidebar"
+                 style="display:block"
+                 data-ad-client="ca-pub-3660868413101432"
+                 data-ad-slot="8772164620"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </aside>
+      </section>
+
+      <div class="ad-banner-wrap">
+        <div class="ad-label">Advertisement</div>
+        <ins class="adsbygoogle ad-horizontal"
+             style="display:block"
+             data-ad-client="ca-pub-3660868413101432"
+             data-ad-slot="3636790382"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>CountDraft — fast, private, 100% browser-based. Your text is never uploaded or stored on any server.</p>
+      <p>© 2026 CountDraft</p>
+    </footer>
+  </div>
+  <script>
+    const textInput = document.getElementById('textInput');
+    const results   = document.getElementById('results');
+
+    function fmt(words, wpm) {
+      if (!words) return '—';
+      const mins = words / wpm;
+      if (mins < 1) return '< 1 min';
+      if (mins < 60) return `${Math.round(mins)} min`;
+      const h = Math.floor(mins / 60), m = Math.round(mins % 60);
+      return m ? `${h}h ${m}m` : `${h}h`;
+    }
+
+    function update() {
+      const text  = textInput.value;
+      const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).filter(Boolean).length;
+
+      document.getElementById('slowTime').textContent = fmt(words, 150);
+      document.getElementById('avgTime').textContent  = fmt(words, 200);
+      document.getElementById('fastTime').textContent = fmt(words, 300);
+      document.getElementById('wordCount').textContent = words
+        ? `${words.toLocaleString()} words · ${text.length.toLocaleString()} characters`
+        : '';
+
+      results.style.opacity = words ? '1' : '0.35';
+      if (words && typeof gtag === 'function') gtag('event', 'reading_time_calculated', { word_count: words });
+    }
+
+    textInput.addEventListener('input', update);
+    document.getElementById('btnClear').addEventListener('click', () => {
+      textInput.value = '';
+      update();
+    });
+  </script>
+</body>
+</html>

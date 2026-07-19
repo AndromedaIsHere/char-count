@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free password strength checker — get an instant score and actionable tips to make your password stronger. 100% private, nothing is sent to any server." />
+  <meta name="google-adsense-account" content="ca-pub-3660868413101432" />
+  <title>Password Strength Checker — Free & Private | CountDraft</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCFSG1SNF4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VCFSG1SNF4');
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3660868413101432" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="page-shell">
+
+    <header class="site-header">
+      <div class="header-brand">
+        <p class="eyebrow">Free Online Tool</p>
+        <h1>Password Strength Checker</h1>
+        <p class="header-tagline">Instant score &amp; actionable tips — 100% private, nothing sent to any server</p>
+      </div>
+    </header>
+
+    <nav class="site-nav" aria-label="Tools">
+      <a href="/" class="nav-home">🛠 CountDraft</a>
+      <a href="/">Char Counter</a>
+      <a href="/case-converter/">Case Converter</a>
+      <a href="/lorem-ipsum/">Lorem Ipsum</a>
+      <a href="/password-checker/" class="active">Password Checker</a>
+      <a href="/word-frequency/">Word Frequency</a>
+      <a href="/reading-time/">Reading Time</a>
+    </nav>
+
+    <div class="header-ad">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle ad-leaderboard"
+           style="display:block"
+           data-ad-client="ca-pub-3660868413101432"
+           data-ad-slot="3349015779"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <main>
+      <section class="tool-section">
+
+        <div class="tool-card">
+          <h2>Check your password</h2>
+
+          <div style="position:relative;margin-bottom:14px">
+            <input type="password" id="pwInput"
+              placeholder="Type a password to check…"
+              aria-label="Password to check"
+              style="width:100%;padding:14px 48px 14px 18px;border-radius:16px;border:1.5px solid #cbd5e1;font-size:1rem;background:var(--surface-dim);font-family:inherit" />
+            <button id="btnToggle" aria-label="Show/hide password"
+              style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1rem">👁</button>
+          </div>
+
+          <div class="strength-bar-wrap">
+            <div class="strength-bar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <div class="strength-label" id="strengthLabel" style="color:var(--text-muted)">Enter a password to see its strength</div>
+          </div>
+
+          <ul class="strength-tips" id="tipsList" style="margin-top:16px"></ul>
+        </div>
+
+        <aside class="tool-sidebar">
+          <div class="metrics-card">
+            <h2>🔒 Privacy guarantee</h2>
+            <p style="font-size:0.88rem;color:var(--text-secondary);margin:0">Your password <strong>never leaves your browser</strong>. All checking happens locally in JavaScript — no network request is made. You can verify this by turning off Wi-Fi and testing.</p>
+          </div>
+
+          <div class="metrics-card">
+            <h2>Tips for strong passwords</h2>
+            <ul style="font-size:0.85rem;color:var(--text-secondary);padding-left:1.2em;margin:0;line-height:1.9">
+              <li>Use 12+ characters</li>
+              <li>Mix uppercase and lowercase</li>
+              <li>Include numbers</li>
+              <li>Add symbols (!@#$%)</li>
+              <li>Avoid dictionary words</li>
+              <li>Never reuse passwords</li>
+            </ul>
+          </div>
+
+          <div class="metrics-card ad-panel">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle ad-sidebar"
+                 style="display:block"
+                 data-ad-client="ca-pub-3660868413101432"
+                 data-ad-slot="8772164620"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </aside>
+      </section>
+
+      <div class="ad-banner-wrap">
+        <div class="ad-label">Advertisement</div>
+        <ins class="adsbygoogle ad-horizontal"
+             style="display:block"
+             data-ad-client="ca-pub-3660868413101432"
+             data-ad-slot="3636790382"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>CountDraft — fast, private, 100% browser-based. Your text is never uploaded or stored on any server.</p>
+      <p>© 2026 CountDraft</p>
+    </footer>
+  </div>
+  <script>
+    const pwInput      = document.getElementById('pwInput');
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthLabel= document.getElementById('strengthLabel');
+    const tipsList     = document.getElementById('tipsList');
+
+    const COMMON = new Set(['password','123456','qwerty','abc123','password1','111111','iloveyou','admin','letmein','monkey','welcome','dragon','master','sunshine','princess','shadow','superman','michael','football']);
+
+    function checkPassword(pw) {
+      const checks = [
+        { id: 'len8',    pass: pw.length >= 8,   msg: 'At least 8 characters'  },
+        { id: 'len12',   pass: pw.length >= 12,  msg: 'At least 12 characters' },
+        { id: 'upper',   pass: /[A-Z]/.test(pw), msg: 'Contains uppercase letter' },
+        { id: 'lower',   pass: /[a-z]/.test(pw), msg: 'Contains lowercase letter' },
+        { id: 'number',  pass: /[0-9]/.test(pw), msg: 'Contains a number' },
+        { id: 'symbol',  pass: /[^A-Za-z0-9]/.test(pw), msg: 'Contains a symbol (!@#$…)' },
+        { id: 'common',  pass: !COMMON.has(pw.toLowerCase()), msg: 'Not a commonly used password' },
+      ];
+
+      const score = checks.filter(c => c.pass).length;
+      return { checks, score };
+    }
+
+    const LEVELS = [
+      { min: 0, max: 1, label: 'Very weak',  color: '#dc2626', pct: 10 },
+      { min: 2, max: 3, label: 'Weak',       color: '#f97316', pct: 30 },
+      { min: 4, max: 4, label: 'Fair',       color: '#d97706', pct: 55 },
+      { min: 5, max: 5, label: 'Good',       color: '#65a30d', pct: 75 },
+      { min: 6, max: 7, label: 'Strong',     color: '#16a34a', pct: 100 },
+    ];
+
+    function getLevel(score) {
+      return LEVELS.find(l => score >= l.min && score <= l.max) || LEVELS[0];
+    }
+
+    pwInput.addEventListener('input', () => {
+      const pw = pwInput.value;
+      if (!pw) {
+        strengthFill.style.width = '0%';
+        strengthLabel.textContent = 'Enter a password to see its strength';
+        strengthLabel.style.color = 'var(--text-muted)';
+        tipsList.innerHTML = '';
+        return;
+      }
+
+      const { checks, score } = checkPassword(pw);
+      const level = getLevel(score);
+
+      strengthFill.style.width = level.pct + '%';
+      strengthFill.style.background = level.color;
+      strengthLabel.textContent = level.label;
+      strengthLabel.style.color = level.color;
+
+      tipsList.innerHTML = checks.map(c =>
+        `<li class="${c.pass ? 'pass' : 'fail'}">${c.pass ? '✅' : '❌'} ${c.msg}</li>`
+      ).join('');
+
+      if (typeof gtag === 'function') gtag('event', 'password_checked', { strength: level.label });
+    });
+
+    document.getElementById('btnToggle').addEventListener('click', () => {
+      pwInput.type = pwInput.type === 'password' ? 'text' : 'password';
+    });
+  </script>
+</body>
+</html>

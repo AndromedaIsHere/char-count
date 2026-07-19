@@ -1,5 +1,5 @@
 /* =========================================================
-   CharCount Pro — Styles
+   CountDraft — Styles
    Design goals: editor first, ads balanced, no scroll-before-use
    ========================================================= */
 
@@ -555,5 +555,286 @@ textarea:focus {
 
   .metrics-panel {
     grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  margin-bottom: 12px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.site-nav a:hover {
+  background: var(--surface-dim);
+  color: var(--text-primary);
+}
+
+.site-nav a.active {
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
+.site-nav .nav-home {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-right: 6px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .site-nav {
+    padding: 10px 12px;
+    gap: 4px;
+  }
+  .site-nav a {
+    padding: 5px 10px;
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   Tool pages — shared
+   ========================================================= */
+
+.tool-section {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 420px);
+  align-items: start;
+  margin-top: 0;
+}
+
+.tool-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+}
+
+.tool-card h2 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.tool-output {
+  margin-top: 14px;
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--surface-dim);
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  min-height: 100px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.tool-output.empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Case converter buttons */
+.case-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  margin-bottom: 14px;
+}
+
+/* Password strength */
+.strength-bar-wrap {
+  margin-top: 14px;
+}
+
+.strength-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.strength-label {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.strength-tips {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.strength-tips li {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.strength-tips li.pass { color: var(--green); }
+.strength-tips li.fail { color: var(--red); }
+
+/* Lorem ipsum controls */
+.lorem-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.lorem-controls label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.lorem-controls input[type="number"] {
+  width: 70px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.88rem;
+}
+
+.lorem-controls select {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  background: var(--surface);
+}
+
+/* Reading time result */
+.reading-results {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 14px;
+}
+
+.reading-card {
+  background: var(--surface-dim);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.reading-card .r-time {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.reading-card .r-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Tool sidebar — reuse metrics-panel styles */
+.tool-sidebar {
+  display: grid;
+  gap: 18px;
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Tools grid on homepage */
+.tools-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-top: 18px;
+}
+
+.tool-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.tool-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+}
+
+.tool-link-card .tl-icon { font-size: 1.6rem; }
+.tool-link-card .tl-name {
+  font-weight: 700;
+  font-size: 0.97rem;
+}
+.tool-link-card .tl-desc {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  .tool-section {
+    grid-template-columns: 1fr;
+  }
+  .tool-sidebar {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .reading-results {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
